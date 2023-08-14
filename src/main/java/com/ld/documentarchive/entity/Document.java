@@ -13,7 +13,7 @@ import org.springframework.data.solr.core.mapping.SolrDocument;
 @NoArgsConstructor
 @FieldNameConstants
 @SolrDocument(collection = "document-archive")
-public class SolrDocumentEntity {
+public class Document {
 
     @Id
     @Field
