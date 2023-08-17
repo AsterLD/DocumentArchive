@@ -2,3 +2,4 @@ spring:
   data:
     solr:
       host: http://localhost:8983/solr/
+      core: document-archive
