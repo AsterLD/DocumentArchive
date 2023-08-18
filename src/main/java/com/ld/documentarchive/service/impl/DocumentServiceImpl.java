@@ -22,4 +22,19 @@ public class DocumentServiceImpl implements DocumentService {
         documentRepository.save(modelMapper.map(documentDto, Document.class), Duration.ZERO);
         return documentDto;
     }
+
+    @Override
+    public DocumentDto readDocumentById(String documentId) {
+        return null;
+    }
+
+    @Override
+    public DocumentDto updateDocumentById(String documentId, DocumentDto documentDto) {
+        return null;
+    }
+
+    @Override
+    public String deleteDocumentById(String documentId) {
+        return null;
+    }
 }
