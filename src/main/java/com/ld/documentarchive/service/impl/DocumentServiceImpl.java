@@ -25,16 +25,24 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public DocumentDto readDocumentById(String documentId) {
-        return null;
+        ModelMapper modelMapper = new ModelMapper();
+        Document document = documentRepository.findById(documentId);
+        return modelMapper.map(document, DocumentDto.class);
     }
 
     @Override
     public DocumentDto updateDocumentById(String documentId, DocumentDto documentDto) {
-        return null;
+        ModelMapper modelMapper = new ModelMapper();
+        Document document = documentRepository.findById(documentId);
+        document.setDocumentType(documentDto.getDocumentType());
+        documentRepository.save(document, Duration.ZERO);
+        return modelMapper.map(document,DocumentDto.class);
     }
 
     @Override
     public String deleteDocumentById(String documentId) {
-        return null;
+        Document document = documentRepository.findById(documentId);
+        documentRepository.deleteById(documentId);
+        return documentId;
     }
 }
