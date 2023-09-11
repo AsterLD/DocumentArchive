@@ -6,7 +6,5 @@ import org.springframework.data.solr.repository.SolrCrudRepository;
 
 public interface DocumentRepository extends SolrCrudRepository<Document, String> {
 
-    public Document findById(String id);
-
     public void deleteById(String id);
 }

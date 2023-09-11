@@ -24,4 +24,7 @@ public class Document {
     @Indexed(required = true)
     private String documentType;
 
+    @Field
+    private String description;
+
 }

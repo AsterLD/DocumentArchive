@@ -9,18 +9,15 @@ import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.data.solr.repository.config.EnableSolrRepositories;
 
 @Configuration
-@EnableSolrRepositories("com.ld.documentarchive.entity")
+@EnableSolrRepositories("com.ld.documentarchive.repo")
 public class SolrConfig {
 
     @Value("${spring.data.solr.host}")
     private String solrHost;
 
-    @Value("${spring.data.solr.core}")
-    private String solrCoreName;
-
     @Bean
     public SolrClient solrClient() {
-        return new Http2SolrClient.Builder(solrHost + solrCoreName).build();
+        return new Http2SolrClient.Builder(solrHost).build();
     }
 
     @Bean

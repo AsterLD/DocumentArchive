@@ -6,6 +6,7 @@ import com.ld.documentarchive.repo.DocumentRepository;
 import com.ld.documentarchive.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -14,6 +15,7 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class DocumentServiceImpl implements DocumentService {
 
+    @Autowired
     private final DocumentRepository documentRepository;
 
     @Override
@@ -26,14 +28,14 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public DocumentDto readDocumentById(String documentId) {
         ModelMapper modelMapper = new ModelMapper();
-        Document document = documentRepository.findById(documentId);
+        Document document = documentRepository.findById(documentId).orElseThrow();
         return modelMapper.map(document, DocumentDto.class);
     }
 
     @Override
     public DocumentDto updateDocumentById(String documentId, DocumentDto documentDto) {
         ModelMapper modelMapper = new ModelMapper();
-        Document document = documentRepository.findById(documentId);
+        Document document = documentRepository.findById(documentId).orElseThrow();
         document.setDocumentType(documentDto.getDocumentType());
         documentRepository.save(document, Duration.ZERO);
         return modelMapper.map(document,DocumentDto.class);
@@ -41,7 +43,7 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public String deleteDocumentById(String documentId) {
-        Document document = documentRepository.findById(documentId);
+        Document document = documentRepository.findById(documentId).orElseThrow();
         documentRepository.deleteById(documentId);
         return documentId;
     }
