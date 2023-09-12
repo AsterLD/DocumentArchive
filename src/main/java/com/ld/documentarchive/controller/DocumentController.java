@@ -5,6 +5,8 @@ import com.ld.documentarchive.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class DocumentController {
@@ -20,6 +22,11 @@ public class DocumentController {
     @GetMapping("/document/{documentId}")
     public DocumentDto readDocumentById(@PathVariable("documentId") String documentId) {
         return documentService.readDocumentById(documentId);
+    }
+
+    @GetMapping("/document/all")
+    public List<DocumentDto> readAllDocuments() {
+        return documentService.readAllDocuments();
     }
 
     @PutMapping(value = "/item/{documentId}/update")
