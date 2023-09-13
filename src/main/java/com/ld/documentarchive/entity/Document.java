@@ -9,6 +9,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.Indexed;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @FieldNameConstants
@@ -26,5 +28,8 @@ public class Document {
 
     @Field
     private String description;
+
+    @Field
+    private List<String> tagList;
 
 }

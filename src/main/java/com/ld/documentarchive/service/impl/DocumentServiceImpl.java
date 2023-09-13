@@ -35,6 +35,12 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
+    public List<DocumentDto> readAllDocumentsByTags(List<String> tagList) {
+        List<Document> documentList = documentRepository.findByTagListIn(tagList);
+        return documentList.stream().map(Mapper::mapDocumentToDocumentDTO).collect(Collectors.toList());
+    }
+
+    @Override
     public DocumentDto readDocumentById(String documentId) {
         Document document = documentRepository.findById(documentId).orElseThrow();
         return Mapper.mapDocumentToDocumentDTO(document);

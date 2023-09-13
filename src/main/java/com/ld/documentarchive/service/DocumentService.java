@@ -10,6 +10,8 @@ public interface DocumentService {
 
     List<DocumentDto> readAllDocuments();
 
+    List<DocumentDto> readAllDocumentsByTags(List<String> tagList);
+
     DocumentDto readDocumentById(String documentId);
 
     DocumentDto updateDocumentById(String documentId, DocumentDto documentDto);

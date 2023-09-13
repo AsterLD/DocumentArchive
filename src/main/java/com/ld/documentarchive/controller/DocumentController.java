@@ -29,6 +29,11 @@ public class DocumentController {
         return documentService.readAllDocuments();
     }
 
+    @GetMapping("/document/search")
+    public List<DocumentDto> readAllDocumentsByTags(@RequestParam List<String> tagList) {
+        return documentService.readAllDocumentsByTags(tagList);
+    }
+
     @PutMapping(value = "/item/{documentId}/update")
     public DocumentDto updateDocumentById(@PathVariable("documentId") String documentId, @RequestBody DocumentDto documentDto) {
         return documentService.updateDocumentById(documentId, documentDto);
