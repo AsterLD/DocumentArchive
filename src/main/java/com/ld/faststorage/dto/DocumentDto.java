@@ -1,4 +1,4 @@
-package com.ld.documentarchive.dto;
+package com.ld.faststorage.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

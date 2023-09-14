@@ -1,6 +1,6 @@
-package com.ld.documentarchive.service;
+package com.ld.faststorage.service;
 
-import com.ld.documentarchive.dto.DocumentDto;
+import com.ld.faststorage.dto.DocumentDto;
 
 import java.util.List;
 

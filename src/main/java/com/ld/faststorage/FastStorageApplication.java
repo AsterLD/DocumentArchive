@@ -1,13 +1,13 @@
-package com.ld.documentarchive;
+package com.ld.faststorage;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DocumentArchiveApplication {
+public class FastStorageApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DocumentArchiveApplication.class, args);
+		SpringApplication.run(FastStorageApplication.class, args);
 	}
 
 }

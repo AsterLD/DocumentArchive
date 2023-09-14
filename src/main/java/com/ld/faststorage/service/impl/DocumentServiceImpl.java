@@ -1,11 +1,11 @@
-package com.ld.documentarchive.service.impl;
+package com.ld.faststorage.service.impl;
 
-import com.ld.documentarchive.dto.DocumentDto;
-import com.ld.documentarchive.entity.Document;
-import com.ld.documentarchive.exception.DocumentException;
-import com.ld.documentarchive.repo.DocumentRepository;
-import com.ld.documentarchive.service.DocumentService;
-import com.ld.documentarchive.utils.Mapper;
+import com.ld.faststorage.dto.DocumentDto;
+import com.ld.faststorage.entity.Document;
+import com.ld.faststorage.exception.DocumentException;
+import com.ld.faststorage.repo.DocumentRepository;
+import com.ld.faststorage.service.DocumentService;
+import com.ld.faststorage.utils.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

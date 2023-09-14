@@ -1,4 +1,4 @@
-package com.ld.documentarchive.config;
+package com.ld.faststorage.config;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.impl.Http2SolrClient;
@@ -9,7 +9,7 @@ import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.data.solr.repository.config.EnableSolrRepositories;
 
 @Configuration
-@EnableSolrRepositories("com.ld.documentarchive.repo")
+@EnableSolrRepositories("com.ld.faststorage.repo")
 public class SolrConfig {
 
     @Value("${spring.data.solr.host}")

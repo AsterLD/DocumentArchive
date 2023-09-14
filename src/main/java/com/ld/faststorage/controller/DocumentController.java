@@ -1,7 +1,7 @@
-package com.ld.documentarchive.controller;
+package com.ld.faststorage.controller;
 
-import com.ld.documentarchive.dto.DocumentDto;
-import com.ld.documentarchive.service.DocumentService;
+import com.ld.faststorage.dto.DocumentDto;
+import com.ld.faststorage.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,7 @@
-package com.ld.documentarchive.utils;
+package com.ld.faststorage.utils;
 
-import com.ld.documentarchive.dto.DocumentDto;
-import com.ld.documentarchive.entity.Document;
+import com.ld.faststorage.dto.DocumentDto;
+import com.ld.faststorage.entity.Document;
 import org.modelmapper.ModelMapper;
 
 public class Mapper {

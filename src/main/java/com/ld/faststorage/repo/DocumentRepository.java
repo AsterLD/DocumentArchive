@@ -1,6 +1,6 @@
-package com.ld.documentarchive.repo;
+package com.ld.faststorage.repo;
 
-import com.ld.documentarchive.entity.Document;
+import com.ld.faststorage.entity.Document;
 import org.springframework.data.solr.repository.SolrCrudRepository;
 
 import java.util.List;

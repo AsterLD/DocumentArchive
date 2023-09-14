@@ -1,4 +1,4 @@
-package com.ld.documentarchive.entity;
+package com.ld.faststorage.entity;
 
 
 import lombok.Data;
