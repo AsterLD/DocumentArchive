@@ -9,6 +9,9 @@ import java.util.List;
 @Data
 public class DocumentDto {
 
+    @JsonProperty("name")
+    private String name;
+
     @JsonProperty("document_type")
     private String documentType;
 

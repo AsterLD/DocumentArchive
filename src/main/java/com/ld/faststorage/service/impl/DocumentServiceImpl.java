@@ -9,6 +9,7 @@ import com.ld.faststorage.utils.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -29,14 +30,14 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public List<DocumentDto> readAllDocuments() {
-        List<Document> documentList = documentRepository.findAll();
+    public List<DocumentDto> readAllDocuments(Integer page, Integer pageSize, String sortBy) {
+        List<Document> documentList = documentRepository.findAll(PageRequest.of(page -1, pageSize)).getContent();
         return documentList.stream().map(Mapper::mapDocumentToDocumentDTO).collect(Collectors.toList());
     }
 
     @Override
-    public List<DocumentDto> readAllDocumentsByTags(List<String> tagList) {
-        List<Document> documentList = documentRepository.findByTagListIn(tagList);
+    public List<DocumentDto> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize, String sortBy) {
+        List<Document> documentList = documentRepository.findByTagListIn(tagList, PageRequest.of(page -1, pageSize)).getContent();
         return documentList.stream().map(Mapper::mapDocumentToDocumentDTO).collect(Collectors.toList());
     }
 

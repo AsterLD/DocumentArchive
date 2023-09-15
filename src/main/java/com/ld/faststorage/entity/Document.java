@@ -23,6 +23,10 @@ public class Document {
     private String id;
 
     @Field
+    @Indexed
+    private String name;
+
+    @Field
     @Indexed(required = true)
     private String documentType;
 

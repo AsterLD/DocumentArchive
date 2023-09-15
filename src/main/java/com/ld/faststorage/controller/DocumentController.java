@@ -25,13 +25,18 @@ public class DocumentController {
     }
 
     @GetMapping("/document/all")
-    public List<DocumentDto> readAllDocuments() {
-        return documentService.readAllDocuments();
+    public List<DocumentDto> readAllDocuments(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                              @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+                                              @RequestParam(value = "sortBy", defaultValue = "documentName") String sortBy) {
+        return documentService.readAllDocuments(page, pageSize, sortBy);
     }
 
     @GetMapping("/document/search")
-    public List<DocumentDto> readAllDocumentsByTags(@RequestParam List<String> tagList) {
-        return documentService.readAllDocumentsByTags(tagList);
+    public List<DocumentDto> readAllDocumentsByTags(@RequestParam List<String> tagList,
+                                                    @RequestParam(value = "page", defaultValue = "1") Integer page,
+                                                    @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+                                                    @RequestParam(value = "sortBy", defaultValue = "documentName") String sortBy) {
+        return documentService.readAllDocumentsByTags(tagList, page, pageSize, sortBy);
     }
 
     @PutMapping(value = "/item/{documentId}/update")
@@ -39,8 +44,8 @@ public class DocumentController {
         return documentService.updateDocumentById(documentId, documentDto);
     }
 
-    @DeleteMapping("/item/{documentId}/delete")
-    public String deleteDocumentById(@PathVariable("userId") String documentId) {
+    @DeleteMapping("/item/delete")
+    public String deleteDocumentById(@RequestParam(value = "documentId") String documentId) {
         return documentService.deleteDocumentById(documentId);
     }
 
