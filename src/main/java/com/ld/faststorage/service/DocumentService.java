@@ -8,9 +8,9 @@ public interface DocumentService {
 
     DocumentDto createDocument(DocumentDto documentDto);
 
-    List<DocumentDto> readAllDocuments(Integer page, Integer pageSize, String sortBy);
+    List<DocumentDto> readAllDocuments(Integer page, Integer pageSize);
 
-    List<DocumentDto> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize, String sortBy);
+    List<DocumentDto> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize);
 
     DocumentDto readDocumentById(String documentId);
 

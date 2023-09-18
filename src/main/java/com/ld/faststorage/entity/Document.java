@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.Indexed;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -34,6 +34,6 @@ public class Document {
     private String description;
 
     @Field
-    private List<String> tagList;
+    private Set<String> tagList;
 
 }

@@ -4,7 +4,7 @@ package com.ld.faststorage.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 public class DocumentDto {
@@ -19,6 +19,6 @@ public class DocumentDto {
     private String description;
 
     @JsonProperty("tag_list")
-    private List<String> tagList;
+    private Set<String> tagList;
 
 }

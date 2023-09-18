@@ -25,22 +25,23 @@ public class DocumentController {
     }
 
     @GetMapping("/document/all")
-    public List<DocumentDto> readAllDocuments(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                                              @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-                                              @RequestParam(value = "sortBy", defaultValue = "documentName") String sortBy) {
-        return documentService.readAllDocuments(page, pageSize, sortBy);
+    public List<DocumentDto> readAllDocuments(
+                                            @RequestParam(value = "page", defaultValue = "1") Integer page,
+                                            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+        return documentService.readAllDocuments(page, pageSize);
     }
 
     @GetMapping("/document/search")
-    public List<DocumentDto> readAllDocumentsByTags(@RequestParam List<String> tagList,
-                                                    @RequestParam(value = "page", defaultValue = "1") Integer page,
-                                                    @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-                                                    @RequestParam(value = "sortBy", defaultValue = "documentName") String sortBy) {
-        return documentService.readAllDocumentsByTags(tagList, page, pageSize, sortBy);
+    public List<DocumentDto> readAllDocumentsByTags(
+                                            @RequestParam List<String> tagList,
+                                            @RequestParam(value = "page", defaultValue = "1") Integer page,
+                                            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+        return documentService.readAllDocumentsByTags(tagList, page, pageSize);
     }
 
     @PutMapping(value = "/item/{documentId}/update")
-    public DocumentDto updateDocumentById(@PathVariable("documentId") String documentId, @RequestBody DocumentDto documentDto) {
+    public DocumentDto updateDocumentById(@PathVariable("documentId") String documentId,
+                                          @RequestBody DocumentDto documentDto) {
         return documentService.updateDocumentById(documentId, documentDto);
     }
 

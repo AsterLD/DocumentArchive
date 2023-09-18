@@ -7,7 +7,6 @@ import com.ld.faststorage.repo.DocumentRepository;
 import com.ld.faststorage.service.DocumentService;
 import com.ld.faststorage.utils.Mapper;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -15,6 +14,8 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.ld.faststorage.utils.Updater.UpdateDocumentFromDto;
 
 @Service
 @RequiredArgsConstructor
@@ -30,13 +31,13 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public List<DocumentDto> readAllDocuments(Integer page, Integer pageSize, String sortBy) {
+    public List<DocumentDto> readAllDocuments(Integer page, Integer pageSize) {
         List<Document> documentList = documentRepository.findAll(PageRequest.of(page -1, pageSize)).getContent();
         return documentList.stream().map(Mapper::mapDocumentToDocumentDTO).collect(Collectors.toList());
     }
 
     @Override
-    public List<DocumentDto> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize, String sortBy) {
+    public List<DocumentDto> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize) {
         List<Document> documentList = documentRepository.findByTagListIn(tagList, PageRequest.of(page -1, pageSize)).getContent();
         return documentList.stream().map(Mapper::mapDocumentToDocumentDTO).collect(Collectors.toList());
     }
@@ -50,7 +51,7 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public DocumentDto updateDocumentById(String documentId, DocumentDto documentDto) {
         Document document = documentRepository.findById(documentId).orElseThrow();
-        document.setDocumentType(documentDto.getDocumentType());
+        UpdateDocumentFromDto(document, documentDto);
         documentRepository.save(document, Duration.ZERO);
         return Mapper.mapDocumentToDocumentDTO(document);
     }
