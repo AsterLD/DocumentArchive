@@ -7,6 +7,7 @@ import com.ld.faststorage.repo.DocumentRepository;
 import com.ld.faststorage.service.DocumentService;
 import com.ld.faststorage.utils.Mapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 import static com.ld.faststorage.utils.Updater.UpdateDocumentFromDTO;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class DocumentServiceImpl implements DocumentService {
@@ -27,6 +29,7 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public DocumentDTO createDocument(DocumentDTO documentDTO) {
         documentRepository.save(Mapper.mapDocumentDTOToDocument(documentDTO), Duration.ZERO);
+        log.info("Saved document: " + documentDTO);
         return documentDTO;
     }
 
@@ -53,6 +56,7 @@ public class DocumentServiceImpl implements DocumentService {
         Document document = documentRepository.findById(documentId).orElseThrow();
         UpdateDocumentFromDTO(document, documentDTO);
         documentRepository.save(document, Duration.ZERO);
+        log.info("Updated document id: " + documentId + " with data: " + documentDTO);
         return Mapper.mapDocumentToDocumentDTO(document);
     }
 
@@ -60,6 +64,7 @@ public class DocumentServiceImpl implements DocumentService {
     public String deleteDocumentById(String documentId) {
         if (documentRepository.existsById(documentId)) {
             documentRepository.deleteById(documentId);
+            log.info("Deleted document id: " + documentId);
             return documentId;
         } else {
             throw new DocumentException("Document not found.");
