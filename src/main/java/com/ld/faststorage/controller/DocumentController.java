@@ -1,6 +1,6 @@
 package com.ld.faststorage.controller;
 
-import com.ld.faststorage.dto.DocumentDto;
+import com.ld.faststorage.dto.DocumentDTO;
 import com.ld.faststorage.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,24 +15,24 @@ public class DocumentController {
 
 
     @PostMapping(value = "/document")
-    public DocumentDto createDocument(@RequestBody DocumentDto documentDto) {
-        return documentService.createDocument(documentDto);
+    public DocumentDTO createDocument(@RequestBody DocumentDTO documentDTO) {
+        return documentService.createDocument(documentDTO);
     }
 
     @GetMapping("/document/{documentId}")
-    public DocumentDto readDocumentById(@PathVariable("documentId") String documentId) {
+    public DocumentDTO readDocumentById(@PathVariable("documentId") String documentId) {
         return documentService.readDocumentById(documentId);
     }
 
     @GetMapping("/document/all")
-    public List<DocumentDto> readAllDocuments(
+    public List<DocumentDTO> readAllDocuments(
                                             @RequestParam(value = "page", defaultValue = "1") Integer page,
                                             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         return documentService.readAllDocuments(page, pageSize);
     }
 
     @GetMapping("/document/search")
-    public List<DocumentDto> readAllDocumentsByTags(
+    public List<DocumentDTO> readAllDocumentsByTags(
                                             @RequestParam List<String> tagList,
                                             @RequestParam(value = "page", defaultValue = "1") Integer page,
                                             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
@@ -40,9 +40,9 @@ public class DocumentController {
     }
 
     @PutMapping(value = "/item/{documentId}/update")
-    public DocumentDto updateDocumentById(@PathVariable("documentId") String documentId,
-                                          @RequestBody DocumentDto documentDto) {
-        return documentService.updateDocumentById(documentId, documentDto);
+    public DocumentDTO updateDocumentById(@PathVariable("documentId") String documentId,
+                                          @RequestBody DocumentDTO documentDTO) {
+        return documentService.updateDocumentById(documentId, documentDTO);
     }
 
     @DeleteMapping("/item/delete")

@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Set;
 
 @Data
-public class DocumentDto {
+public class DocumentDTO {
 
     @JsonProperty("name")
     private String name;

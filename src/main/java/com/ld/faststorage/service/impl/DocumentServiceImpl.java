@@ -1,6 +1,6 @@
 package com.ld.faststorage.service.impl;
 
-import com.ld.faststorage.dto.DocumentDto;
+import com.ld.faststorage.dto.DocumentDTO;
 import com.ld.faststorage.entity.Document;
 import com.ld.faststorage.exception.DocumentException;
 import com.ld.faststorage.repo.DocumentRepository;
@@ -15,7 +15,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.ld.faststorage.utils.Updater.UpdateDocumentFromDto;
+import static com.ld.faststorage.utils.Updater.UpdateDocumentFromDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -25,33 +25,33 @@ public class DocumentServiceImpl implements DocumentService {
     private final DocumentRepository documentRepository;
 
     @Override
-    public DocumentDto createDocument(DocumentDto documentDto) {
-        documentRepository.save(Mapper.mapDocumentDTOToDocument(documentDto), Duration.ZERO);
-        return documentDto;
+    public DocumentDTO createDocument(DocumentDTO documentDTO) {
+        documentRepository.save(Mapper.mapDocumentDTOToDocument(documentDTO), Duration.ZERO);
+        return documentDTO;
     }
 
     @Override
-    public List<DocumentDto> readAllDocuments(Integer page, Integer pageSize) {
+    public List<DocumentDTO> readAllDocuments(Integer page, Integer pageSize) {
         List<Document> documentList = documentRepository.findAll(PageRequest.of(page -1, pageSize)).getContent();
         return documentList.stream().map(Mapper::mapDocumentToDocumentDTO).collect(Collectors.toList());
     }
 
     @Override
-    public List<DocumentDto> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize) {
+    public List<DocumentDTO> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize) {
         List<Document> documentList = documentRepository.findByTagListIn(tagList, PageRequest.of(page -1, pageSize)).getContent();
         return documentList.stream().map(Mapper::mapDocumentToDocumentDTO).collect(Collectors.toList());
     }
 
     @Override
-    public DocumentDto readDocumentById(String documentId) {
+    public DocumentDTO readDocumentById(String documentId) {
         Document document = documentRepository.findById(documentId).orElseThrow();
         return Mapper.mapDocumentToDocumentDTO(document);
     }
 
     @Override
-    public DocumentDto updateDocumentById(String documentId, DocumentDto documentDto) {
+    public DocumentDTO updateDocumentById(String documentId, DocumentDTO documentDTO) {
         Document document = documentRepository.findById(documentId).orElseThrow();
-        UpdateDocumentFromDto(document, documentDto);
+        UpdateDocumentFromDTO(document, documentDTO);
         documentRepository.save(document, Duration.ZERO);
         return Mapper.mapDocumentToDocumentDTO(document);
     }
