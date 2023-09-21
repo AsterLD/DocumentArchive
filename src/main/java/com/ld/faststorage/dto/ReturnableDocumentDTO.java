@@ -1,0 +1,27 @@
+package com.ld.faststorage.dto;
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+import java.util.Set;
+
+@Data
+public class ReturnableDocumentDTO {
+
+    @JsonProperty("document_id")
+    private String id;
+
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("document_type")
+    private String documentType;
+
+    @JsonProperty("description")
+    private String description;
+
+    @JsonProperty("tag_list")
+    private Set<String> tagList;
+
+}

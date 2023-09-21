@@ -1,18 +1,19 @@
 package com.ld.faststorage.utils;
 
-import com.ld.faststorage.dto.DocumentDTO;
+import com.ld.faststorage.dto.ReturnableDocumentDTO;
+import com.ld.faststorage.dto.SavableDocumentDTO;
 import com.ld.faststorage.entity.Document;
 import org.modelmapper.ModelMapper;
 
 public class Mapper {
 
-    public static DocumentDTO mapDocumentToDocumentDTO(Document document) {
+    public static ReturnableDocumentDTO mapDocumentToReturnableDTO(Document document) {
         ModelMapper mapper = new ModelMapper();
-        return mapper.map(document, DocumentDTO.class);
+        return mapper.map(document, ReturnableDocumentDTO.class);
     }
 
-    public static Document mapDocumentDTOToDocument(DocumentDTO documentDTO) {
+    public static Document mapSavableDTOToDocument(SavableDocumentDTO savableDocumentDTO) {
         ModelMapper mapper = new ModelMapper();
-        return mapper.map(documentDTO, Document.class);
+        return mapper.map(savableDocumentDTO, Document.class);
     }
 }

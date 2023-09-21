@@ -1,13 +1,17 @@
 package com.ld.faststorage.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.Set;
 
 @Data
-public class DocumentDTO {
+public class SavableDocumentDTO {
+
+    @JsonIgnore
+    private String id;
 
     @JsonProperty("name")
     private String name;

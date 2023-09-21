@@ -1,20 +1,21 @@
 package com.ld.faststorage.service;
 
-import com.ld.faststorage.dto.DocumentDTO;
+import com.ld.faststorage.dto.ReturnableDocumentDTO;
+import com.ld.faststorage.dto.SavableDocumentDTO;
 
 import java.util.List;
 
 public interface DocumentService {
 
-    DocumentDTO createDocument(DocumentDTO documentDTO);
+    ReturnableDocumentDTO createDocument(SavableDocumentDTO savableDocumentDTO);
 
-    List<DocumentDTO> readAllDocuments(Integer page, Integer pageSize);
+    List<ReturnableDocumentDTO> readAllDocuments(Integer page, Integer pageSize);
 
-    List<DocumentDTO> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize);
+    List<ReturnableDocumentDTO> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize);
 
-    DocumentDTO readDocumentById(String documentId);
+    ReturnableDocumentDTO readDocumentById(String documentId);
 
-    DocumentDTO updateDocumentById(String documentId, DocumentDTO documentDTO);
+    ReturnableDocumentDTO updateDocumentById(String documentId,SavableDocumentDTO savableDocumentDTO);
 
     String deleteDocumentById(String documentId);
 

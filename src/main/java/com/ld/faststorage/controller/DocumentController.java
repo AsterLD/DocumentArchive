@@ -1,6 +1,7 @@
 package com.ld.faststorage.controller;
 
-import com.ld.faststorage.dto.DocumentDTO;
+import com.ld.faststorage.dto.ReturnableDocumentDTO;
+import com.ld.faststorage.dto.SavableDocumentDTO;
 import com.ld.faststorage.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,24 +16,24 @@ public class DocumentController {
 
 
     @PostMapping(value = "/document")
-    public DocumentDTO createDocument(@RequestBody DocumentDTO documentDTO) {
-        return documentService.createDocument(documentDTO);
+    public ReturnableDocumentDTO createDocument(@RequestBody SavableDocumentDTO savableDocumentDTO) {
+        return documentService.createDocument(savableDocumentDTO);
     }
 
     @GetMapping("/document/{documentId}")
-    public DocumentDTO readDocumentById(@PathVariable("documentId") String documentId) {
+    public ReturnableDocumentDTO readDocumentById(@PathVariable("documentId") String documentId) {
         return documentService.readDocumentById(documentId);
     }
 
     @GetMapping("/document/all")
-    public List<DocumentDTO> readAllDocuments(
+    public List<ReturnableDocumentDTO> readAllDocuments(
                                             @RequestParam(value = "page", defaultValue = "1") Integer page,
                                             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         return documentService.readAllDocuments(page, pageSize);
     }
 
     @GetMapping("/document/search")
-    public List<DocumentDTO> readAllDocumentsByTags(
+    public List<ReturnableDocumentDTO> readAllDocumentsByTags(
                                             @RequestParam List<String> tagList,
                                             @RequestParam(value = "page", defaultValue = "1") Integer page,
                                             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
@@ -40,9 +41,9 @@ public class DocumentController {
     }
 
     @PutMapping(value = "/item/{documentId}/update")
-    public DocumentDTO updateDocumentById(@PathVariable("documentId") String documentId,
-                                          @RequestBody DocumentDTO documentDTO) {
-        return documentService.updateDocumentById(documentId, documentDTO);
+    public ReturnableDocumentDTO updateDocumentById(@PathVariable("documentId") String documentId,
+                                                    @RequestBody SavableDocumentDTO savableDocumentDTO) {
+        return documentService.updateDocumentById(documentId, savableDocumentDTO);
     }
 
     @DeleteMapping("/item/delete")
