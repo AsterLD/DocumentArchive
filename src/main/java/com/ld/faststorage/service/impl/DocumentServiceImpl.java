@@ -24,7 +24,6 @@ import static com.ld.faststorage.utils.Updater.UpdateDocumentFromDTO;
 @RequiredArgsConstructor
 public class DocumentServiceImpl implements DocumentService {
 
-    @Autowired
     private final DocumentRepository documentRepository;
 
     @Override

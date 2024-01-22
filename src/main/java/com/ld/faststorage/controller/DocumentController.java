@@ -14,7 +14,6 @@ public class DocumentController {
 
     private final DocumentService documentService;
 
-
     @PostMapping(value = "/document")
     public ReturnableDocumentDTO createDocument(@RequestBody SavableDocumentDTO savableDocumentDTO) {
         return documentService.createDocument(savableDocumentDTO);
