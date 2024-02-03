@@ -6,10 +6,9 @@ import com.ld.faststorage.entity.Document;
 import com.ld.faststorage.exception.DocumentException;
 import com.ld.faststorage.repo.DocumentRepository;
 import com.ld.faststorage.service.DocumentService;
-import com.ld.faststorage.utils.Mapper;
+import com.ld.faststorage.utils.DocumentMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -26,29 +25,31 @@ public class DocumentServiceImpl implements DocumentService {
 
     private final DocumentRepository documentRepository;
 
+    private final DocumentMapper documentMapper;
+
     @Override
     public ReturnableDocumentDTO createDocument(SavableDocumentDTO savableDocumentDTO) {
-        Document document = documentRepository.save(Mapper.mapSavableDTOToDocument(savableDocumentDTO), Duration.ZERO);
+        Document document = documentRepository.save(documentMapper.toDocument(savableDocumentDTO), Duration.ZERO);
         log.info("Saved document: " + savableDocumentDTO);
-        return Mapper.mapDocumentToReturnableDTO(document);
+        return documentMapper.toReturnableDTO(document);
     }
 
     @Override
     public List<ReturnableDocumentDTO> readAllDocuments(Integer page, Integer pageSize) {
-        List<Document> documentList = documentRepository.findAll(PageRequest.of(page -1, pageSize)).getContent();
-        return documentList.stream().map(Mapper::mapDocumentToReturnableDTO).collect(Collectors.toList());
+        List<Document> documentList = documentRepository.findAll(PageRequest.of(page - 1, pageSize)).getContent();
+        return documentList.stream().map(documentMapper::toReturnableDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<ReturnableDocumentDTO> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize) {
-        List<Document> documentList = documentRepository.findByTagListIn(tagList, PageRequest.of(page -1, pageSize)).getContent();
-        return documentList.stream().map(Mapper::mapDocumentToReturnableDTO).collect(Collectors.toList());
+        List<Document> documentList = documentRepository.findByTagListIn(tagList, PageRequest.of(page - 1, pageSize)).getContent();
+        return documentList.stream().map(documentMapper::toReturnableDTO).collect(Collectors.toList());
     }
 
     @Override
     public ReturnableDocumentDTO readDocumentById(String documentId) {
         Document document = documentRepository.findById(documentId).orElseThrow();
-        return Mapper.mapDocumentToReturnableDTO(document);
+        return documentMapper.toReturnableDTO(document);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class DocumentServiceImpl implements DocumentService {
         UpdateDocumentFromDTO(document, savableDocumentDTO);
         documentRepository.save(document, Duration.ZERO);
         log.info("Updated document id: " + documentId + " with data: " + savableDocumentDTO);
-        return Mapper.mapDocumentToReturnableDTO(document);
+        return documentMapper.toReturnableDTO(document);
     }
 
     @Override
