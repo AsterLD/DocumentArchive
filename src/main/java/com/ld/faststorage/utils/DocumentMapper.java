@@ -2,14 +2,14 @@ package com.ld.faststorage.utils;
 
 import com.ld.faststorage.dto.ReturnableDocumentDTO;
 import com.ld.faststorage.dto.SavableDocumentDTO;
-import com.ld.faststorage.entity.Document;
+import com.ld.faststorage.entity.DocumentFile;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface DocumentMapper {
 
-    ReturnableDocumentDTO toReturnableDTO(Document source);
+    ReturnableDocumentDTO toReturnableDTO(DocumentFile source);
 
-    Document toDocument(SavableDocumentDTO source);
+    DocumentFile toDocument(SavableDocumentDTO source);
 }

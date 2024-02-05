@@ -2,9 +2,9 @@ package com.ld.faststorage.service.impl;
 
 import com.ld.faststorage.dto.ReturnableDocumentDTO;
 import com.ld.faststorage.dto.SavableDocumentDTO;
-import com.ld.faststorage.entity.Document;
+import com.ld.faststorage.entity.DocumentFile;
 import com.ld.faststorage.exception.DocumentException;
-import com.ld.faststorage.repo.DocumentRepository;
+import com.ld.faststorage.repo.DocumentFileRepository;
 import com.ld.faststorage.service.DocumentService;
 import com.ld.faststorage.utils.DocumentMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,48 +23,48 @@ import static com.ld.faststorage.utils.Updater.UpdateDocumentFromDTO;
 @RequiredArgsConstructor
 public class DocumentServiceImpl implements DocumentService {
 
-    private final DocumentRepository documentRepository;
+    private final DocumentFileRepository documentFileRepository;
 
     private final DocumentMapper documentMapper;
 
     @Override
     public ReturnableDocumentDTO createDocument(SavableDocumentDTO savableDocumentDTO) {
-        Document document = documentRepository.save(documentMapper.toDocument(savableDocumentDTO), Duration.ZERO);
+        DocumentFile documentFIle = documentFileRepository.save(documentMapper.toDocument(savableDocumentDTO));
         log.info("Saved document: " + savableDocumentDTO);
-        return documentMapper.toReturnableDTO(document);
+        return documentMapper.toReturnableDTO(documentFIle);
     }
 
     @Override
     public List<ReturnableDocumentDTO> readAllDocuments(Integer page, Integer pageSize) {
-        List<Document> documentList = documentRepository.findAll(PageRequest.of(page - 1, pageSize)).getContent();
-        return documentList.stream().map(documentMapper::toReturnableDTO).collect(Collectors.toList());
+        List<DocumentFile> documentFileList = documentFileRepository.findAll(PageRequest.of(page - 1, pageSize)).getContent();
+        return documentFileList.stream().map(documentMapper::toReturnableDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<ReturnableDocumentDTO> readAllDocumentsByTags(List<String> tagList, Integer page, Integer pageSize) {
-        List<Document> documentList = documentRepository.findByTagListIn(tagList, PageRequest.of(page - 1, pageSize)).getContent();
-        return documentList.stream().map(documentMapper::toReturnableDTO).collect(Collectors.toList());
+        List<DocumentFile> documentFileList = documentFileRepository.findByTagListIn(tagList, PageRequest.of(page - 1, pageSize)).getContent();
+        return documentFileList.stream().map(documentMapper::toReturnableDTO).collect(Collectors.toList());
     }
 
     @Override
     public ReturnableDocumentDTO readDocumentById(String documentId) {
-        Document document = documentRepository.findById(documentId).orElseThrow();
-        return documentMapper.toReturnableDTO(document);
+        DocumentFile documentFIle = documentFileRepository.findById(documentId).orElseThrow();
+        return documentMapper.toReturnableDTO(documentFIle);
     }
 
     @Override
     public ReturnableDocumentDTO updateDocumentById(String documentId, SavableDocumentDTO savableDocumentDTO) {
-        Document document = documentRepository.findById(documentId).orElseThrow();
-        UpdateDocumentFromDTO(document, savableDocumentDTO);
-        documentRepository.save(document, Duration.ZERO);
+        DocumentFile documentFIle = documentFileRepository.findById(documentId).orElseThrow();
+        UpdateDocumentFromDTO(documentFIle, savableDocumentDTO);
+        documentFileRepository.save(documentFIle);
         log.info("Updated document id: " + documentId + " with data: " + savableDocumentDTO);
-        return documentMapper.toReturnableDTO(document);
+        return documentMapper.toReturnableDTO(documentFIle);
     }
 
     @Override
     public String deleteDocumentById(String documentId) {
-        if (documentRepository.existsById(documentId)) {
-            documentRepository.deleteById(documentId);
+        if (documentFileRepository.existsById(documentId)) {
+            documentFileRepository.deleteById(documentId);
             log.info("Deleted document id: " + documentId);
             return documentId;
         } else {
