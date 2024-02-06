@@ -13,7 +13,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.util.Set;
 
 @Data
-@Document(indexName = "faststorage")
+@Document(indexName = "document_files")
 public class DocumentFile {
 
     @Id

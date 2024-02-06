@@ -1,5 +1,10 @@
 spring:
   data:
-    solr:
-      host: http://localhost:8983/solr/
-      core: document-archive
+    elasticsearch:
+        cluster-name: docker-cluster
+        cluster-nodes: localhost:9200
+        repositories:
+              enabled: true
+springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true

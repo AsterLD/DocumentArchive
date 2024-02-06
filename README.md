@@ -7,6 +7,6 @@ __Main objective:__ <br/>
 
 __Technologies:__ 
 * Spring Boot;
-* Apache Solr;
+* Elasticsearch;
 * Lombok;
 * Log4j for logging.
