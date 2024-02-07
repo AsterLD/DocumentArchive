@@ -15,7 +15,7 @@ public interface DocumentService {
 
     ReturnableDocumentDTO readDocumentById(String documentId);
 
-    ReturnableDocumentDTO updateDocumentById(String documentId,SavableDocumentDTO savableDocumentDTO);
+    ReturnableDocumentDTO updateDocumentById(String documentId, SavableDocumentDTO savableDocumentDTO);
 
     String deleteDocumentById(String documentId);
 

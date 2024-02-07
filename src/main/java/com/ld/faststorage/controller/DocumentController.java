@@ -26,16 +26,16 @@ public class DocumentController {
 
     @GetMapping("/document/all")
     public List<ReturnableDocumentDTO> readAllDocuments(
-                                            @RequestParam(value = "page", defaultValue = "1") Integer page,
-                                            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         return documentService.readAllDocuments(page, pageSize);
     }
 
     @GetMapping("/document/search")
     public List<ReturnableDocumentDTO> readAllDocumentsByTags(
-                                            @RequestParam List<String> tagList,
-                                            @RequestParam(value = "page", defaultValue = "1") Integer page,
-                                            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+            @RequestParam List<String> tagList,
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         return documentService.readAllDocumentsByTags(tagList, page, pageSize);
     }
 

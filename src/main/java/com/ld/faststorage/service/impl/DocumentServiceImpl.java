@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,9 +28,9 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public ReturnableDocumentDTO createDocument(SavableDocumentDTO savableDocumentDTO) {
-        DocumentFile documentFIle = documentFileRepository.save(documentMapper.toDocument(savableDocumentDTO));
+        DocumentFile documentFile = documentFileRepository.save(documentMapper.toDocument(savableDocumentDTO));
         log.info("Saved document: " + savableDocumentDTO);
-        return documentMapper.toReturnableDTO(documentFIle);
+        return documentMapper.toReturnableDTO(documentFile);
     }
 
     @Override
@@ -54,11 +53,11 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public ReturnableDocumentDTO updateDocumentById(String documentId, SavableDocumentDTO savableDocumentDTO) {
-        DocumentFile documentFIle = documentFileRepository.findById(documentId).orElseThrow();
-        UpdateDocumentFromDTO(documentFIle, savableDocumentDTO);
-        documentFileRepository.save(documentFIle);
+        DocumentFile documentFile = documentFileRepository.findById(documentId).orElseThrow();
+        UpdateDocumentFromDTO(documentFile, savableDocumentDTO);
+        documentFileRepository.save(documentFile);
         log.info("Updated document id: " + documentId + " with data: " + savableDocumentDTO);
-        return documentMapper.toReturnableDTO(documentFIle);
+        return documentMapper.toReturnableDTO(documentFile);
     }
 
     @Override

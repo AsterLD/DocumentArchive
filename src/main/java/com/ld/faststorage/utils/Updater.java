@@ -11,11 +11,14 @@ public class Updater {
         if (Objects.nonNull(savableDocumentDTO)) {
             if (Objects.nonNull(savableDocumentDTO.getName())) {
                 documentFIle.setName(savableDocumentDTO.getName());
-            } if (Objects.nonNull(savableDocumentDTO.getDocumentType())) {
+            }
+            if (Objects.nonNull(savableDocumentDTO.getDocumentType())) {
                 documentFIle.setDocumentType(savableDocumentDTO.getDocumentType());
-            } if (Objects.nonNull(savableDocumentDTO.getDescription())) {
+            }
+            if (Objects.nonNull(savableDocumentDTO.getDescription())) {
                 documentFIle.setDescription(savableDocumentDTO.getDescription());
-            } if (!savableDocumentDTO.getTagList().isEmpty()) {
+            }
+            if (!savableDocumentDTO.getTagList().isEmpty()) {
                 documentFIle.getTagList().addAll(savableDocumentDTO.getTagList());
             }
         }
